@@ -1,0 +1,971 @@
+/* 기본 리셋 및 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 폰 컨테이너 스타일 */
+.phone-container {
+    width: 375px;
+    height: 812px;
+    background-color: white;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 10px solid #333;
+}
+
+/* 상태 바 스타일 */
+.status-bar {
+    height: 44px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* 앱 콘텐츠 영역 스타일 */
+.app-content {
+    height: calc(100% - 44px - 80px);
+    overflow-y: auto;
+    background-color: #fcfcfc;
+    padding: 0;
+}
+
+/* 하단 탭 바 스타일 */
+.tab-bar {
+    height: 80px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #f1f1f1;
+    z-index: 110;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    color: #6A5ACD;
+}
+
+.tab.active i {
+    color: #6A5ACD;
+}
+
+/* 탭 콘텐츠 스타일 */
+.tab-content {
+    display: none;
+    height: 100%;
+    padding: 15px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 글쓰기 탭 스타일 */
+/* 앱 콘텐츠 영역 스타일 */
+.app-content {
+    height: calc(100% - 44px - 80px);
+    overflow-y: auto;
+    background-color: #fcfcfc;
+    padding: 0; /* Remove padding to maximize space */
+}
+
+/* 검색 컨테이너 스타일 */
+/* 검색 컨테이너 스타일 */
+.search-container {
+    position: relative;
+    width: 100%; /* Full width */
+    height: 100%; /* Take full height of parent */
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin to prevent misalignment */
+    box-sizing: border-box; /* Ensure no overflow */
+}
+
+/* 검색 입력 필드 스타일 */
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 10px;
+    margin-left: 0; /* Explicitly set to 0 */
+    margin-right: 0; /* Explicitly set to 0 */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* 검색 결과 스타일 */
+.search-results {
+    flex: 1; /* Take remaining space */
+    overflow-y: auto;
+    border-radius: 0; /* Remove rounded corners for full-width look */
+    box-shadow: none; /* Remove shadow for a cleaner look */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove padding to align with search input */
+    background-color: white;
+    display: block;
+    width: 100%; /* Ensure it matches the search input width */
+    box-sizing: border-box; /* Ensure no overflow */
+}
+
+/* 검색 아이템 스타일 */
+.search-item {
+    display: flex;
+    padding: 12px 15px; /* Keep padding consistent with search input */
+    border-bottom: 1px solid #f1f1f1;
+    align-items: center;
+    cursor: pointer;
+    width: 100%; /* Full width */
+    margin: 0; /* Remove any margin */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.search-item:hover {
+    background-color: #f9f9f9;
+}
+
+.search-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.search-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item-title {
+    font-weight: 600;
+    font-size: 16px; /* Slightly larger for better readability */
+    margin-bottom: 4px;
+}
+
+.search-item-artist {
+    font-size: 14px;
+    color: #888;
+}
+
+.write-container {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.album-art {
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+}
+
+.album-art.playing {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-info {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.music-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.music-artist {
+    font-size: 14px;
+    color: #888;
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #555;
+}
+
+.control-btn.play-pause {
+    font-size: 30px;
+    color: #6A5ACD;
+}
+
+.diary-input {
+    flex: 1;
+}
+
+.diary-title {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.diary-content {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    resize: none;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.diary-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.diary-action {
+    border: none;
+    background: none;
+    color: #6A5ACD;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.post-btn {
+    background-color: #6A5ACD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 피드 탭 스타일 */
+.feed-item {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    height: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.feed-item-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) brightness(0.7);
+    transform: scale(1.1);
+}
+
+.feed-item-content {
+    position: relative;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.feed-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.feed-item-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feed-item-date {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.feed-item-music {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.feed-item-music img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.feed-item-music-info {
+    flex: 1;
+}
+
+.feed-item-music-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.feed-item-music-artist {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.feed-item-preview {
+    font-size: 14px;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 음악 플레이어 탭 스타일 */
+.playlist-section {
+    margin-bottom: 25px;
+}
+
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.playlist-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.see-all {
+    color: #6A5ACD;
+    font-size: 14px;
+}
+
+.playlist-items {
+    display: flex;
+    overflow-x: auto;
+    padding: 5px 0;
+    scrollbar-width: none;
+}
+
+.playlist-items::-webkit-scrollbar {
+    display: none;
+}
+
+.playlist-item {
+    min-width: 120px;
+    margin-right: 15px;
+}
+
+.playlist-item img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.playlist-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-item-count {
+    font-size: 12px;
+    color: #888;
+}
+
+.track-list {
+    margin-top: 20px;
+}
+
+.track-item {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f1f1;
+    align-items: center;
+}
+
+.track-number {
+    width: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+}
+
+.track-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.track-artist {
+    font-size: 13px;
+    color: #888;
+}
+
+.track-actions {
+    color: #888;
+    font-size: 16px;
+}
+
+/* MY 탭 스타일 */
+.profile-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #f0f0f0;
+    margin-right: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-posts {
+    font-size: 14px;
+    color: #888;
+}
+
+.settings-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.calendar-container {
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-nav-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.day {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.day.empty {
+    visibility: hidden;
+}
+
+.day.has-entry {
+    background-color: rgba(106, 90, 205, 0.1);
+    color: #6A5ACD;
+    font-weight: bold;
+}
+
+.day.active {
+    background-color: #6A5ACD;
+    color: white;
+    font-weight: bold;
+}
+
+.my-entries {
+    margin-top: 20px;
+}
+
+/* 미니 플레이어 스타일 */
+.mini-player {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #6A5ACD;
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.mini-player.active {
+    transform: translateY(0);
+}
+
+.mini-player img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.mini-player-info {
+    flex: 1;
+}
+
+.mini-player-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.mini-player-artist {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.mini-player-controls {
+    display: flex;
+    align-items: center;
+}
+
+.mini-player-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* 로딩 애니메이션 */
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #6A5ACD;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+@keyframes rotation {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Hide scrollbars globally for Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    display: none; /* Completely hide the scrollbar */
+}
+
+/* Hide scrollbars globally for Firefox */
+* {
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in older Edge/IE */
+}
+
+/* Ensure specific scrollable sections don't show scrollbars */
+.app-content,
+.search-results,
+.playlist-items,
+.track-list,
+.my-entries {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+}
+
+/* Remove any conflicting scrollbar styles */
+.app-content::-webkit-scrollbar,
+.search-results::-webkit-scrollbar,
+.playlist-items::-webkit-scrollbar,
+.track-list::-webkit-scrollbar,
+.my-entries::-webkit-scrollbar {
+    display: none;
+}
+
+/* 새로 추가된 스타일 */
+
+/* 메모리 섹션 스타일 */
+.memories-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f2ff;
+    border-radius: 12px;
+}
+
+.memories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.memories-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #6A5ACD;
+}
+
+.memories-title i {
+    margin-right: 8px;
+}
+
+.memories-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 5px 0;
+    scrollbar-width: none;
+}
+
+.memory-item {
+    min-width: 250px;
+    margin-right: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(106, 90, 205, 0.15);
+    padding: 10px;
+    position: relative;
+}
+
+.memory-date {
+    font-size: 12px;
+    color: #6A5ACD;
+    margin-bottom: 5px;
+}
+
+.section-divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 10px 0 20px 0;
+}
+
+
+/* 노래별 다이어리 섹션 스타일 수정 */
+.song-diaries-section {
+    position: absolute; /* fixed에서 absolute로 변경 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* calc(100% - 80px)에서 100%로 변경 */
+    background-color: white;
+    z-index: 120;
+    padding: 15px;
+    overflow-y: auto;
+    display: none;
+}
+
+.song-diaries-section.active {
+    display: block;
+}
+
+
+.close-song-diaries {
+    color: #6A5ACD;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 모달 스타일 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    display: none;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    width: 80%;
+    max-width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.modal-close {
+    cursor: pointer;
+    color: #888;
+}
+
+.modal-body {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.playlist-option {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.playlist-option:hover {
+    background-color: #f9f9f9;
+}
+
+.playlist-option img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.playlist-option-info {
+    flex: 1;
+}
+
+.playlist-option-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.playlist-option-count {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 트랙 아이템 스타일 수정 */
+.track-actions {
+    display: flex;
+    color: #888;
+    font-size: 16px;
+}
+
+.track-action-btn {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.track-action-btn:hover {
+    color: #6A5ACD;
+}
+
+/* 새로운 버튼 스타일 */
+.success-notification {
+    position: absolute; /* fixed에서 absolute로 변경 */
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #6A5ACD;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    z-index: 150;
+    display: none;
+}
+
+/* 노래 헤더 스타일 추가 */
+.song-header {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f2ff;
+    border-radius: 12px;
+}
+
+.song-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.song-header-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(106, 90, 205, 0.2);
+}
+
+.song-header-info {
+    margin-top: 8px;
+}
+
+.song-header-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.song-header-artist {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.song-header-entries {
+    font-size: 12px;
+    color: #6A5ACD;
+    font-weight: 600;
+}

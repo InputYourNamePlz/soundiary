@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundiary</title>
+    <link rel="stylesheet" href="soundiary.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <span class="icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </span>
+        </div>
+        
+        <div class="app-content">
+            <!-- Write Tab -->
+            <div class="tab-content" id="write-tab">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search Music">
+                    <div class="search-results">
+                        <!-- 검색 결과는 JavaScript로 동적 생성 -->
+                    </div>
+                </div>
+                
+                <div class="write-container">
+                    <div class="music-player">
+                        <div class="album-art"></div>
+                        <div class="music-info">
+                            <div class="music-title"></div>
+                            <div class="music-artist"></div>
+                        </div>
+                        <div class="music-controls">
+                            <button class="control-btn"><i class="fas fa-step-backward"></i></button>
+                            <button class="control-btn play-pause"><i class="fas fa-play"></i></button>
+                            <button class="control-btn"><i class="fas fa-step-forward"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="diary-input">
+                        <input type="text" class="diary-title" placeholder="Title">
+                        <textarea class="diary-content" placeholder="How was your day?"></textarea>
+                        <div class="diary-actions">
+                            <button class="diary-action"><i class="fas fa-image"></i></button>
+                            <button class="post-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <span class="loader"></span>
+            </div>
+            
+            <!-- Feed Tab -->
+            <div class="tab-content" id="feed-tab">
+                <!-- Memories Section (New) -->
+                <div class="memories-section">
+                    <div class="memories-header">
+                        <div class="memories-title"><i class="fas fa-calendar-day"></i> On This Day</div>
+                    </div>
+                    <div class="memories-container" id="memories-container">
+                        <!-- Memories will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <!-- Feed entries -->
+                <div id="feed-entries">
+                    <!-- 피드 아이템은 JavaScript로 동적 생성 -->
+                </div>
+            </div>
+            
+            <!-- Music Play Tab -->
+            <div class="tab-content" id="music-tab">
+                <div class="playlist-section" id="my-playlists-section">
+                    <div class="playlist-header">
+                        <div class="playlist-title">My Playlists</div>
+                        <div class="see-all">See all</div>
+                    </div>
+                    <div class="playlist-items" id="my-playlists">
+                        <!-- 내 플레이리스트는 JavaScript로 동적 생성 -->
+                    </div>
+                </div>
+                
+                <div class="playlist-section" id="friend-playlists-section">
+                    <div class="playlist-header">
+                        <div class="playlist-title">Friends' Playlists</div>
+                        <div class="see-all">See all</div>
+                    </div>
+                    <div class="playlist-items" id="friend-playlists">
+                        <!-- 친구 플레이리스트는 JavaScript로 동적 생성 -->
+                    </div>
+                </div>
+                
+                <div class="track-list">
+                    <div class="playlist-header">
+                        <div class="playlist-title">Recent Musics</div>
+                    </div>
+                    
+                    <div id="recent-diary-songs">
+                        <!-- 최근 일기 노래는 JavaScript로 동적 생성 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- My Tab -->
+            <div class="tab-content" id="my-tab">
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="profile-pic"></div>
+                        <div>
+                            <div class="profile-name"></div>
+                            <div class="profile-posts"></div>
+                        </div>
+                    </div>
+                    <div class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+                
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-title"></div>
+                        <div class="calendar-nav">
+                            <div class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="weekday">일</div>
+                        <div class="weekday">월</div>
+                        <div class="weekday">화</div>
+                        <div class="weekday">수</div>
+                        <div class="weekday">목</div>
+                        <div class="weekday">금</div>
+                        <div class="weekday">토</div>
+                        
+                        <!-- 달력 일자는 JavaScript로 동적 생성 -->
+                    </div>
+                </div>
+                
+                <div class="my-entries">
+                    <!-- 선택한 날짜의 일기는 JavaScript로 동적 생성 -->
+                </div>
+            </div>
+            
+            <!-- Song Diaries Section (New) - 스마트폰 프레임 내부로 이동 -->
+            <div class="song-diaries-section" id="song-diaries-section">
+                <div class="playlist-header">
+                    <div class="playlist-title">Diaries with this Song</div>
+                    <div class="close-song-diaries">Close</div>
+                </div>
+                <div id="song-diaries-container">
+                    <!-- Song related diaries will be generated here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="mini-player">
+            <img src="/api/placeholder/40/40" alt="Album">
+            <div class="mini-player-info">
+                <div class="mini-player-title">노래 제목</div>
+                <div class="mini-player-artist">아티스트</div>
+            </div>
+            <div class="mini-player-controls">
+                <button class="mini-player-btn"><i class="fas fa-pause"></i></button>
+                <button class="mini-player-btn"><i class="fas fa-step-forward"></i></button>
+            </div>
+        </div>
+        
+        <!-- Add to Playlist Modal (New) -->
+        <div class="modal" id="playlist-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Add to Playlist</div>
+                    <div class="modal-close"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="modal-body" id="playlist-options">
+                    <!-- Playlist options will be generated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 성공 알림 - 스마트폰 프레임 내부로 이동 -->
+        <div class="success-notification"></div>
+        
+        <div class="tab-bar">
+            <div class="tab" data-tab="write-tab">
+                <i class="fas fa-pen"></i>
+                <span>Write</span>
+            </div>
+            <div class="tab" data-tab="feed-tab">
+                <i class="fas fa-stream"></i>
+                <span>Feed</span>
+            </div>
+            <div class="tab" data-tab="music-tab">
+                <i class="fas fa-music"></i>
+                <span>Music</span>
+            </div>
+            <div class="tab" data-tab="my-tab">
+                <i class="fas fa-user"></i>
+                <span>MY</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 데이터와 스크립트 파일 로드 순서 중요: 데이터 먼저, 그 다음에 메인 스크립트 -->
+    <script src="soundiary-data.js"></script>
+    <script src="soundiary.js"></script>
+</body>
+</html>
